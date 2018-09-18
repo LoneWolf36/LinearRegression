@@ -15,7 +15,6 @@ def gradient_descent(x, y, learning_rate, initial_b, initial_m, num_iterations):
         b, m = step_gradient_descent(x, y, b, m, learning_rate)
     return (b, m)
 
-
 def step_gradient_descent(x, y, b_current, m_current, learning_rate):
     b_gradient = 0
     m_gradient = 0
@@ -42,12 +41,16 @@ def main():
     # Step 3 : Train our model
     print('Starting gradient descent at b = {0}, m = {1}, error = {2}'.format(
         initial_b, initial_m, compute_error_for_given_points(initial_b, initial_m, x, y)))
-        
 
-    b, m = gradient_descent(x, y, learning_rate, initial_b, initial_m, num_iterations)
-    
+    b, m = gradient_descent(x, y, learning_rate,
+                            initial_b, initial_m, num_iterations)
+
     print('Ending gradient descent at b = {1}, m = {2}, error = {3} with {0} iterations'.format(
         num_iterations, b, m, compute_error_for_given_points(b, m, x, y)))
+
+    plt.scatter(x, y)
+    plt.plot(x, x*m + b, 'r')
+    plt.show()
 
 if __name__ == '__main__':
     main()
